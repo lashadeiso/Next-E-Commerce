@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 const SinglePage = () => {
   return <div>SinglePage</div>;

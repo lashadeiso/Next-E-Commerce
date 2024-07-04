@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 const ListPage = () => {
   return <div>ListPage</div>;
