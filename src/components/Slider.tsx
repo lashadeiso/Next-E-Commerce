@@ -30,7 +30,7 @@ const slides = [
     bg: "bg-gradient-to-r from-yellow-50 to-pink-50",
   },
   {
-    id: 1,
+    id: 4,
     title: "Autemn Sale Collections",
     description: "Sale! Up to 50% off!",
     img: "https://images.pexels.com/photos/914668/pexels-photo-914668.jpeg",
@@ -91,7 +91,7 @@ const Slider = () => {
         {slides.map((slide, index) => (
           <div
             className={`flex h-3 w-3 cursor-pointer items-center justify-center rounded-full ring-1 ring-gray-600 ${current === index ? "scale-150" : ""}`}
-            key={slide.title}
+            key={slide.id}
             onClick={() => setCurrent(index)}
           >
             {current == index && (
