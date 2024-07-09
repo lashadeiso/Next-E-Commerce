@@ -1,5 +1,3 @@
-"use server";
-
 const LoginPage = () => {
   return <div>LoginPage</div>;
 };

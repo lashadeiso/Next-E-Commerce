@@ -1,5 +1,3 @@
-"use server";
-
 import Image from "next/image";
 import Filter from "../../components/Filter";
 import ProductList from "@/components/ProductList";
