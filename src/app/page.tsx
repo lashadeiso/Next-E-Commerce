@@ -21,7 +21,9 @@ const HomePage = async () => {
         <h1 className="xl:32 mb-12 px-4 text-2xl md:px-8 lg:px-16 2xl:px-64">
           Categories
         </h1>
-        <CategoryList />
+        <Suspense fallback={"Loading.."}>
+          <CategoryList />
+        </Suspense>
       </div>
       <div className="xl:32 mt-24 px-4 md:px-8 lg:px-16 2xl:px-64">
         <h1 className="text-2xl">New Products</h1>
