@@ -1,8 +1,15 @@
 import Image from "next/image";
 import Filter from "../../components/Filter";
 import ProductList from "@/components/ProductList";
+import { wixClientServer } from "@/lib/wixClientServer";
+import { Suspense } from "react";
 
-const ListPage = () => {
+const ListPage = async ({ searchParams }: { searchParams: any }) => {
+  const wixClient = await wixClientServer();
+  const cat = await wixClient.collections.getCollectionBySlug(
+    searchParams.cat || "all-products",
+  );
+
   return (
     <div className="xl:32 relative px-4 md:px-8 lg:px-16 2xl:px-64">
       <div className="hidden h-64 justify-between bg-pink-50 px-4 sm:flex">
@@ -23,7 +30,14 @@ const ListPage = () => {
 
       {/* Product List */}
       <h1 className="mt-12 text-xl font-semibold">All Products For You!</h1>
-      <ProductList />
+      <Suspense fallback={"Loading..."}>
+        <ProductList
+          categoryId={
+            cat.collection?._id || "00000000-000000-000000-000000000001"
+          }
+          searchParams={searchParams}
+        />
+      </Suspense>
     </div>
   );
 };
