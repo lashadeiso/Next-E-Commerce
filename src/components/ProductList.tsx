@@ -56,9 +56,9 @@ const ProductList = async ({
             className="text-sm text-gray-500"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(
-                product.additionalInfoSections?.find(
-                  (section: any) => section.title === "Short Description",
-                )?.description || "lasha",
+                product.additionalInfoSections
+                  ?.find((section: any) => section.title === "PRODUCT INFO")
+                  ?.description?.slice(0, 70) + "..." || "Something text",
               ),
             }}
           ></div>
