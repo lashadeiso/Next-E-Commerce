@@ -2,13 +2,18 @@
 
 import { useState } from "react";
 
-const Add = () => {
-  // Temprorary
-  const stock = 4;
-
+const Add = ({
+  productId,
+  variantId,
+  stockNumber,
+}: {
+  productId: string;
+  variantId: string;
+  stockNumber: number;
+}) => {
   const [quantity, setQuantity] = useState(1);
   const handleQuantity = (type: "i" | "d") => {
-    type === "i" && quantity < stock && setQuantity((item) => item + 1);
+    type === "i" && quantity < stockNumber && setQuantity((item) => item + 1);
     type === "d" && quantity > 1 && setQuantity((item) => item - 1);
   };
 
@@ -33,8 +38,8 @@ const Add = () => {
             </button>
           </div>
           <div className="text-xs">
-            Only <span className="text-orange-500">{stock} items</span> left!{" "}
-            <br /> Dont miss it
+            Only <span className="text-orange-500">{stockNumber} items</span>{" "}
+            left! <br /> Dont miss it
           </div>
         </div>
         <button className="disabled:ring-none transition:hover w-36 rounded-3xl px-4 py-2 text-sm ring-1 ring-cPink duration-200 hover:bg-cPink hover:text-white disabled:cursor-not-allowed disabled:bg-pink-200 disabled:text-white">
