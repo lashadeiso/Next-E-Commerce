@@ -1,8 +1,6 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
-import React from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Filter = () => {
   const pathname = usePathname();
@@ -13,7 +11,9 @@ const Filter = () => {
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
   ) => {
     const { name, value } = e.target;
-    console.log(name, value);
+    const params = new URLSearchParams(searchParams);
+    params.set(name, value);
+    replace(`${pathname}?${params.toString()}`);
   };
 
   return (
@@ -22,79 +22,57 @@ const Filter = () => {
         <select
           name="type"
           id=""
-          className="cursor-pointer rounded-2xl bg-[#EBEDED] px-4 py-2 text-xs font-medium"
+          className="rounded-2xl bg-[#EBEDED] px-4 py-2 text-xs font-medium"
           onChange={handleFilterChange}
         >
           <option>Type</option>
-          <option value="pysical">Physical</option>
+          <option value="physical">Physical</option>
           <option value="digital">Digital</option>
         </select>
-
         <input
-          type="number"
+          type="text"
           name="min"
           placeholder="min price"
-          className="w-24 rounded-2xl pl-3 text-xs ring-1 ring-gray-400"
+          className="w-24 rounded-2xl pl-2 text-xs ring-1 ring-gray-400"
           onChange={handleFilterChange}
         />
         <input
-          type="number"
+          type="text"
           name="max"
           placeholder="max price"
-          className="w-24 rounded-2xl pl-3 text-xs ring-1 ring-gray-400"
+          className="w-24 rounded-2xl pl-2 text-xs ring-1 ring-gray-400"
           onChange={handleFilterChange}
         />
-        {/* <select
-          name="type"
-          id=""
-          className="cursor-pointer rounded-2xl bg-[#EBEDED] px-4 py-2 text-xs font-medium"
-        >
-          <option>Size</option>
-          <option value="pysical">Physical</option>
-          <option value="digital">Digital</option>
-        </select>
+        {/* TODO: Filter Categories */}
         <select
-          name="type"
-          id=""
-          className="cursor-pointer rounded-2xl bg-[#EBEDED] px-4 py-2 text-xs font-medium"
-        >
-          <option>Color</option>
-          <option value="pysical">Physical</option>
-          <option value="digital">Digital</option>
-        </select> */}
-        <select
-          name="category"
-          id=""
-          className="cursor-pointer rounded-2xl bg-[#EBEDED] px-4 py-2 text-xs font-medium"
+          name="cat"
+          className="rounded-2xl bg-[#EBEDED] px-4 py-2 text-xs font-medium"
           onChange={handleFilterChange}
         >
           <option>Category</option>
-          <option value="pysical">Physical</option>
-          <option value="digital">Digital</option>
+          <option value="">New Arrival</option>
+          <option value="">Popular</option>
         </select>
         <select
-          name="type"
+          name=""
           id=""
-          className="cursor-pointer rounded-2xl bg-[#EBEDED] px-4 py-2 text-xs font-medium"
+          className="rounded-2xl bg-[#EBEDED] px-4 py-2 text-xs font-medium"
         >
           <option>All Filters</option>
-          <option value="pysical">Physical</option>
-          <option value="digital">Digital</option>
         </select>
       </div>
-
       <div className="">
         <select
           name="sort"
           id=""
-          className="cursor-pointer rounded-2xl bg-white px-4 py-2 text-xs font-medium ring-1 ring-gray-400"
+          className="rounded-2xl bg-white px-4 py-2 text-xs font-medium ring-1 ring-gray-400"
           onChange={handleFilterChange}
         >
           <option>Sort By</option>
-          <option value="pysical">Price (low to high)</option>
-          <option value="digital">Price (high to low)</option>
-          <option value="digital">Newest</option>
-          <option value="digital">Oldest</option>
+          <option value="asc price">Price (low to high)</option>
+          <option value="desc price">Price (high to low)</option>
+          <option value="asc lastUpdated">Newest</option>
+          <option value="desc lastUpdated">Oldest</option>
         </select>
       </div>
     </div>
