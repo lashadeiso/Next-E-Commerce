@@ -36,7 +36,7 @@ const ProductList = async ({
               alt=""
               fill
               sizes="25vw"
-              className="object-fit easy absolute z-10 rounded-md transition-opacity duration-500 hover:opacity-0"
+              className="easy absolute z-10 rounded-md object-cover transition-opacity duration-500 hover:opacity-0"
             />
             {product.media?.items && (
               <Image
@@ -44,7 +44,7 @@ const ProductList = async ({
                 alt=""
                 fill
                 sizes="25vw"
-                className="object-fit absolute rounded-md"
+                className="absolute rounded-md object-cover"
               />
             )}
           </div>
