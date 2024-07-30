@@ -1,7 +1,7 @@
 import { wixClientServer } from "@/lib/wixClientServer";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+
 
 const CategoryList = async () => {
   const wixClient = await wixClientServer();
